@@ -10,8 +10,9 @@ const footerLinks = {
   ],
   about: [
     { label: "My Story", href: "#" },
-    { label: "LinkedIn", href: "#" },
-    { label: "Email", href: "#" },
+    { label: "LinkedIn", href: "https://www.linkedin.com/in/b-bharadwaj" },
+    { label: "GitHub", href: "https://github.com/ByrojuBharadwaj" },
+    { label: "Email", href: "mailto:byrojubharadwaj@gmail.com" },
   ],
   service: [
     { label: "FAQ", href: "#" },
@@ -59,6 +60,7 @@ export function FooterSection() {
                 <li key={link.label}>
                   <Link
                     href={link.href}
+                    {...(link.href.startsWith("http") && { target: "_blank", rel: "noopener noreferrer" })}
                     className="text-sm text-muted-foreground transition-colors hover:text-foreground"
                   >
                     {link.label}

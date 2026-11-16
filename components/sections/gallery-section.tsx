@@ -109,10 +109,10 @@ export function GallerySection({
   const cardFrame = "aspect-[3/2] w-[min(100%,105vh)] md:w-[min(100%,120vh)]";
 
   const images = [
-    { src: "/images/experience-1-cognizant.jpg", alt: "Payments and finance platform architecture at Cognizant: Kubernetes, Kafka, MuleSoft and data warehouses" },
-    { src: "/images/experience-2-conversational-voice-ai.jpg", alt: "Conversational voice AI agent at ASU: multi-channel voice input routed through models, data stores and human handoff" },
-    { src: "/images/experience-3-contents-valuation-ai.jpg", alt: "Contents valuation AI pipeline at TheBest Claims: document intake, item matching across retailers and depreciation pricing" },
-    { src: "/images/experience-4-multi-tenant-saas.jpg", alt: "Multi-tenant SaaS platform at InternPro: tenant routing, event queues, Postgres and containerized services" },
+    { src: "/images/experience-1-cognizant.jpg", alt: "Payments and finance platform architecture at Cognizant: Kubernetes, Kafka, MuleSoft and data warehouses", githubUrl: "#", demoUrl: "#" },
+    { src: "/images/experience-2-conversational-voice-ai.jpg", alt: "Conversational voice AI agent at ASU: multi-channel voice input routed through models, data stores and human handoff", githubUrl: "#", demoUrl: "#" },
+    { src: "/images/experience-3-contents-valuation-ai.jpg", alt: "Contents valuation AI pipeline at TheBest Claims: document intake, item matching across retailers and depreciation pricing", githubUrl: "#", demoUrl: "#" },
+    { src: "/images/experience-4-multi-tenant-saas.jpg", alt: "Multi-tenant SaaS platform at InternPro: tenant routing, event queues, Postgres and containerized services", githubUrl: "#", demoUrl: "#" },
   ];
 
   const updateTransform = useCallback(() => {
@@ -249,7 +249,7 @@ export function GallerySection({
       )}
 
       {/* Section title */}
-      <div className="flex h-[53vh] items-end justify-center px-6 pb-8 md:pb-10">
+      <div className={`flex h-[53vh] items-end justify-center px-6 ${horizontalMode ? "pb-20 md:pb-24" : "pb-8 md:pb-10"}`}>
         {staticMode ? (
           <h2 className="translate-y-[30px] whitespace-nowrap text-[24vw] font-bold leading-[0.72] tracking-tighter text-white md:text-[20vw]" style={{ fontSize: galleryTitleFontSize }}>
             {galleryTitle}
@@ -349,6 +349,25 @@ export function GallerySection({
                     priority={index < 3}
                   />
                 </div>
+                {horizontalMode && (
+                  <div className="absolute left-0 right-0 top-full mt-4 flex justify-center gap-3 md:mt-6">
+                    {[
+                      { label: "GitHub", href: image.githubUrl },
+                      { label: "Live Demo", href: image.demoUrl },
+                    ].map((link) => (
+                      <a
+                        key={link.label}
+                        href={link.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        tabIndex={index === activeImageIndex ? 0 : -1}
+                        className="rounded-full border border-white/50 px-5 py-2 font-mono text-xs uppercase tracking-[0.2em] text-white transition-colors duration-300 hover:bg-white hover:text-black"
+                      >
+                        {link.label}
+                      </a>
+                    ))}
+                  </div>
+                )}
               </div>
             );
           })}
